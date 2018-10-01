@@ -1,6 +1,7 @@
 // miniprogram/pages/photo/photo.js
 
 const db = wx.cloud.database()
+const app = getApp()
 
 Page({
   /**
@@ -14,8 +15,23 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-     this.getData()
   },
+
+  getOpenid: function () {
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        console.log('[云函数] [login] user openid: ', res.result.openid)
+        app.globalData.openid = res.result.openid
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+      }
+    })
+  },
+
 
   getData: function(){
     db.collection("images").orderBy('createTime', 'desc').get({
@@ -37,7 +53,10 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-
+    if (!app.globalData.openid) {
+      this.getOpenid()
+    }
+    this.getData()
   },
 
   /**
@@ -74,70 +93,4 @@ Page({
   onShareAppMessage: function () {
 
   },
-  doUpload: function()  {
-    // 选择图片
-    const self = this
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function (res) {
-
-        wx.showLoading({
-          title: '上传中',
-        })
-
-        const filePath = res.tempFilePaths[0]
-
-        // 上传图片
-        var date = new Date()
-
-        const cloudPath = date.getTime() + filePath.match(/\.[^.]+?$/)[0]
-        
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-            self.insertToCloud(res)
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-
-      },
-      fail: e => {
-        console.error(e)
-      }
-    })
-  },
-  insertToCloud: function (res) {
-    const self = this
-    db.collection('images').add({
-      // data 字段表示需新增的 JSON 数据
-      data: {
-        image: res.fileID,
-        createTime: db.serverDate()
-      },
-      success: function (res) {
-        // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-        console.log(res)
-        self.getData()
-        
-      },
-      fail: function (res) {
-        console.log(res)
-      }
-    })
-  }
-
-
 })

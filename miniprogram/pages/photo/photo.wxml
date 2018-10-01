@@ -1,11 +1,8 @@
 <!--miniprogram/pages/photo/photo.wxml-->
 <view class="container">
-<scroll-view scroll-y class='scrollview'>
+<view class='scrollview'>
 <view wx:for="{{images}}" class='item'>
   <image class='image' mode="aspectFit" src="{{item.image}}"></image>
 </view>
-</scroll-view>
-<view class='upload'>
-<text>上传图片</text>
 </view>
 </view>

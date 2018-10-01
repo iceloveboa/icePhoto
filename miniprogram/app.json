@@ -2,6 +2,7 @@
   "cloud": true,
   "pages": [
     "pages/photo/photo",
+    "pages/uploadPhoto/uploadphoto",
     "pages/userConsole/userConsole",
     "pages/index/index",
     "pages/storageConsole/storageConsole",
@@ -10,6 +11,22 @@
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib"
   ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/photo/photo",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/uploadPhoto/uploadphoto",
+        "text": "+"
+      },
+      {
+        "pagePath": "pages/uploadPhoto/uploadphoto",
+        "text": "日志"
+      }
+    ]
+  },
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",

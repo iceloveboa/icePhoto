@@ -15,7 +15,6 @@
   /* flex-wrap: wrap; */
   width: 750rpx;
   /* height: 750rpx; */
-  background-color: yellow;
   font-size: 0;
   letter-spacing: -3px;
    flex-grow:1;
@@ -24,24 +23,12 @@
 .item{
   width: 375rpx;
   height: 375rpx;
-  background-color: black;
   display: inline-block;
 }
 .image{
-  width: 360rpx;
-  height: 360rpx;
-  margin-left: 10rpx;
-  margin-top:10rpx;
-  background-color: red;
-}
-.upload{
-  display: flex;
-  width: 750rpx;
-  /* height: 60rpx; */
-  background-color: blue;
-  border-radius:20rpx;
-  border: 1% solid #fff;  
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+  width: 370rpx;
+  height: 370rpx;
+  margin-left: 5rpx;
+  margin-top:5rpx;
+  background-color: rgba(229, 226, 226, 0.678);
 }
