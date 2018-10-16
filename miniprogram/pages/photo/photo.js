@@ -93,4 +93,12 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  preview:function(e){
+    wx.previewImage({
+      urls: [e.target.dataset.src],
+    })
+  }
+
+
 })

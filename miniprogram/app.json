@@ -15,16 +15,23 @@
     "list": [
       {
         "pagePath": "pages/photo/photo",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/uploadPhoto/uploadphoto",
-        "text": "+"
-      },
-      {
-        "pagePath": "pages/uploadPhoto/uploadphoto",
-        "text": "日志"
+        "text": "图片",
+        "iconPath":"images/photo.png",
+        "selectedIconPath":"images/photo.png"
       }
+      ,
+      {
+        "pagePath": "pages/uploadPhoto/uploadphoto",
+        "iconPath": "images/add.png",
+        "selectedIconPath": "images/add.png"
+      },
+          {
+            "pagePath": "pages/photo/photo",
+            "text": "图片",
+            "iconPath": "images/photo.png",
+            "selectedIconPath": "images/photo.png"
+          }
+
     ]
   },
   "window": {

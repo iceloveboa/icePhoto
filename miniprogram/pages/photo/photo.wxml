@@ -2,7 +2,7 @@
 <view class="container">
 <view class='scrollview'>
 <view wx:for="{{images}}" class='item'>
-  <image class='image' mode="aspectFit" src="{{item.image}}"></image>
+  <image class='image' mode="aspectFit" src="{{item.image}}" bindtap='preview' data-src='{{item.image}}'></image> 
 </view>
 </view>
 </view>
